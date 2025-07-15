@@ -122,6 +122,8 @@ FIFOEnabled = false
 WelcomeMessage = Welcome to our community
 WelcomeMessageEnabled = false
 MaxHopCount = 5
+# The Meshtastic channel to send text messages to
+TextChannel = 1
 
 [APRS]
 # en: APRS functionality. Not actually used. Boolean.

@@ -213,7 +213,8 @@ class TelegramBot:  # pylint:disable=too-many-public-methods
             msg = message.replace(message.split(' ', maxsplit=1)[0], '').strip()
             if self.aprs is not None:
                 self.aprs.send_text(addressee, f'{full_user}: {msg}')
-        self.meshtastic_connection.send_text(f"{full_user}: {message}")
+        self.meshtastic_connection.send_text(f"{full_user}: {message}",
+                channelIndex=self.config.enforce_type(int, self.config.Meshtastic.TextChannel))
 
     def shorten_tly(self, long_url: str) -> str:
         """
@@ -254,7 +255,6 @@ class TelegramBot:  # pylint:disable=too-many-public-methods
         except (requests.RequestException, ValueError, KeyError) as exc:
             self.logger.error("URL shortening failed: %s", exc)
             return long_url
-
 
     def poll(self) -> None:
         """
